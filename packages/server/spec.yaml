@@ -1,0 +1,179 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Fipe Seek
+  description: A simple FIPE vehicle API.
+
+servers:
+  - url: http://localhost:5000
+
+paths:
+  /brands/{type}:
+    get:
+      description: Lists brands for a type of vehicle.
+      tags:
+        - brands
+      parameters:
+        - in: path
+          name: type
+          description: Type of vehicle to list.
+          required: true
+          schema:
+            type: string
+            enum: [car, motorcycle, truck]
+      responses:
+        '200':
+          description: Success, list of brands for that vehicle type.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Brand'
+        '400':
+          description: Validation error in request parameter.
+        '500':
+          description: Internal server error.
+
+  /vehicles/{code}:
+    get:
+      description: Lists vehicles by FIPE code.
+      tags:
+        - vehicles
+      parameters:
+        - in: path
+          name: code
+          description: FIPE code to search by.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success, list of vehicles.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Vehicle"
+        '400':
+          description: Bad request, no vehicles found for this code.
+        '500':
+          description: Internal server error.
+
+  /bookmarks:
+    get:
+      description: Lists saved bookmarks.
+      tags:
+        - bookmarks
+      responses:
+        '200':
+          description: Success, list of bookmarks.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Vehicle"
+        '500':
+          description: Internal server error.
+
+    post:
+      description: Add a bookmark.
+      tags:
+        - bookmarks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateBookmarkRequest"
+      responses:
+        '200':
+          description: Success, vehicle saved as a bookmark. Returns the vehicle with the isFavorite field updated.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Vehicle"
+        '400':
+          description: Validation error in request body.
+        '500':
+          description: Internal server error.
+
+components:
+  schemas:
+    Brand:
+      type: object
+      properties:
+        code:
+          type: number
+          description: Unique code that identifies this brand.
+          example: 1
+        name:
+          type: string
+          description: Name of this brand.
+          example: "Acura"
+      required:
+        - code
+        - name
+
+    Vehicle:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique ID for this vehicle. It is made up of the FIPE code, model year and fuel type separated by a forward slash.
+          example: "001004-9/2000/Gasolina"
+        fipeCode:
+          type: string
+          description: FIPE code for the model of this vehicle. This code is not unique for this vehicle as the same model of other year/fuel combinations all share the same FIPE code.
+          example: "001004-9"
+        brand:
+          type: string
+          description: Brand name for this vehicle.
+          example: "Fiat"
+        model:
+          type: string
+          description: Model of this vehicle.
+          example: "Palio EX 1.0 mpi 2p"
+        year:
+          type: number
+          description: Model year for this vehicle.
+          example: 2000
+        fuel:
+          type: string
+          description: Fuel type this vehicle takes.
+          example: "Gasolina"
+        price:
+          type: string
+          description: Price for this vehicle in BRL.
+          example: "R$ 8.386,00"
+        isFavorite:
+          type: boolean
+          description: True if this vehicle is bookmarked as a favorite.
+          example: true
+        createdAt:
+          type: string
+          format: date-time
+          description: Date in which this document was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: Date in which this document was last updated.
+      required:
+        - _id
+        - fipeCode
+        - brand
+        - model
+        - year
+        - fuel
+        - price
+        - isFavorite
+
+    CreateBookmarkRequest:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique vehicle ID to save as a bookmark.
+          example: "001004-9/2000/G"
