@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
+import 'reflect-metadata';
 import 'dotenv/config';
+import '@containers/index.container';
 
 import { server } from '@http/server';
 import { serverConfig } from '@config/server.config';
