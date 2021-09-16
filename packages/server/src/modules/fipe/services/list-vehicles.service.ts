@@ -3,6 +3,7 @@ import { Collection } from 'mongodb';
 
 import { IFipeProvider } from '@providers/i-fipe.provider';
 import { Vehicle } from '@entities/vehicle.entity';
+import { Bookmark } from '@entities/bookmark.entity';
 
 interface IRequest {
   code: string;
@@ -16,12 +17,16 @@ export class ListVehiclesService {
 
     @inject('VehiclesCollection')
     private vehiclesCollection: Collection<Vehicle>,
+
+    @inject('BookmarksCollection')
+    private bookmarksCollection: Collection<Bookmark>,
   ) {}
 
   public async execute(request: IRequest): Promise<Vehicle[]> {
     const { code } = request;
     const currentMonth = new Date().getMonth();
     const currentYear = new Date().getFullYear();
+    const bookmarks = await this.bookmarksCollection.find().toArray();
     let list: Vehicle[] = [];
 
     const cachedList = await this.vehiclesCollection
@@ -53,6 +58,9 @@ export class ListVehiclesService {
       list = cachedList;
     }
 
-    return list;
+    return list.map(v => ({
+      ...v,
+      isFavorite: Boolean(bookmarks.find(b => b._id === v._id)),
+    }));
   }
 }
