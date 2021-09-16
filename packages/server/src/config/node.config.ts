@@ -4,6 +4,6 @@ const environment = process.env.NODE_ENV as
   | 'development'
   | undefined;
 
-export default {
+export const nodeConfig = {
   environment: environment || 'development',
 };
