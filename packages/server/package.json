@@ -19,6 +19,7 @@
     "@types/node": "^16.9.1",
     "jest": "^27.0.4",
     "nodemon": "^2.0.7",
+    "redoc-cli": "^0.12.3",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "^3.9.0",
