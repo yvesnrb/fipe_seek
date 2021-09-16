@@ -1,0 +1,26 @@
+{
+  "name": "fipe_seeker",
+  "version": "1.0.0",
+  "description": "Full-stack web application to search vehicle prices.",
+  "private": true,
+  "scripts": {
+    "server:watch": "yarn workspace @fipeseeker/server watch",
+    "server:build": "yarn workspace @fipeseeker/server build",
+    "server:start": "yarn workspace @fipeseeker/server start"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "author": "Yves Bode",
+  "license": "ISC",
+  "devDependencies": {
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint-plugin-prettier": "^3.4.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

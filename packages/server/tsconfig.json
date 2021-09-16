@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "allowJs": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"],
+      "@config/*": ["config/*"],
+      "@errors/*": ["errors/*"],
+      "@containers/*": [
+        "modules/shared/containers/*",
+        "modules/fipe/containers/*"
+      ],
+      "@entities/*": [
+        "modules/shared/entities/*",
+        "modules/fipe/entities/*"
+      ],
+      "@http/*": [
+        "modules/shared/http/*",
+        "modules/fipe/http/*"
+      ],
+      "@providers/*": [
+        "modules/shared/providers/*",
+        "modules/fipe/providers/*"
+      ],
+      "@repositories/*": [
+        "modules/shared/repositories/*",
+        "modules/fipe/repositories/*"
+      ],
+      "@services/*": [
+        "modules/shared/services/*",
+        "modules/fipe/services/*"
+      ]
+    },
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"]
+}
