@@ -67,6 +67,35 @@ export class BrasilApiFipeProvider implements IFipeProvider {
   }
 
   public async getVehicle(_id: string): Promise<Vehicle> {
-    throw new Error('Method not implemented.');
+    const [fipeCode, year, fuel] = _id.split('/');
+
+    const response = await axios
+      .get<IVeiculo[]>(`${this.url}/preco/v1/${fipeCode}`)
+      .catch(reason => {
+        const error = reason as AxiosError;
+        if (error.response?.status === 400)
+          throw new AppError('invalid _id vehicle search attempt', 400);
+
+        throw new AppError('unexpected BrasilAPI error', 500);
+      });
+
+    const veiculo = response.data.find(
+      v => v.anoModelo === Number(year) && v.combustivel === fuel,
+    );
+
+    if (veiculo) {
+      const vehicle = new Vehicle({
+        fuel: veiculo.combustivel,
+        year: veiculo.anoModelo,
+        fipeCode: veiculo.codigoFipe,
+        price: veiculo.valor,
+        model: veiculo.modelo,
+        brand: veiculo.marca,
+      });
+
+      return vehicle;
+    }
+
+    throw new AppError('invalid _id vehicle search attempt', 400);
   }
 }
