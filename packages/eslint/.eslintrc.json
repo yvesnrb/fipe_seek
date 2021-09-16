@@ -21,6 +21,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "import"],
   "rules": {
+    "no-underscore-dangle": "off",
     "react/prop-types": "off",
     "no-use-before-define": "off",
     "react/require-default-props": "off",
