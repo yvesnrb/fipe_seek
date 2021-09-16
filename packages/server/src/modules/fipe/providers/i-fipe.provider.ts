@@ -32,5 +32,5 @@ export interface IFipeProvider {
    * @returns A promise that resolves in a single Vehicle enity if a vehicle
    * was found that matched the ID. Undefined otherwise.
    */
-  getVehicle(id: string): Promise<Vehicle | undefined>;
+  getVehicle(id: string): Promise<Vehicle>;
 }
