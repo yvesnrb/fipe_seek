@@ -10,7 +10,6 @@
   },
   "private": true,
   "dependencies": {
-    "@fipeseeker/eslint-config-fipeseeker": "1.0.0",
     "@angular/animations": "~12.2.0",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
@@ -19,6 +18,8 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@fipeseeker/eslint-config-fipeseeker": "1.0.0",
+    "bootstrap": "^5.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
