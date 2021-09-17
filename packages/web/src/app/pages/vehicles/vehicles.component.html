@@ -25,7 +25,8 @@
           <li>Marca: {{ vehicle.brand }}</li>
           <li>Preço: {{ vehicle.price }}</li>
         </ul>
-        <a href="#" class="card-link">Marcar como favorito</a>
+        <a (click)="handleBookmark(vehicle._id)" *ngIf="!vehicle.isFavorite" class="card-link">Marcar como favorito</a>
+        <p class="mb-0 text-primary" *ngIf="vehicle.isFavorite">Veículo favoritado.</p>
       </div>
     </div>
   </div>
