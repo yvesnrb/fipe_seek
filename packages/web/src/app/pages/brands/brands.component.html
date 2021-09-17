@@ -1,0 +1,44 @@
+<div class="container-fluid bg-light min-vh-100 d-flex flex-column justify-content-start align-items-center p-3">
+  <a routerLink="/" class="mb-3 align-self-start">Voltar</a>
+
+  <h1 class="mb-5 text-center">Consultar Marcas</h1>
+
+  <div class="mb-5 w-100">
+    <label for="exampleInputEmail1" class="form-label">Tipo:</label>
+
+    <div (click)="setType('car')" class="form-check">
+      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+      <label class="form-check-label" for="flexRadioDefault1">
+        Carros
+      </label>
+    </div>
+    <div (click)="setType('motorcycle')" class="form-check">
+      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+      <label class="form-check-label" for="flexRadioDefault2">
+        Motos
+      </label>
+    </div>
+    <div (click)="setType('truck')" class="form-check">
+      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+      <label class="form-check-label" for="flexRadioDefault3">
+        Caminhões
+      </label>
+    </div>
+
+    <div class="mt-3 d-flex w-100 justify-content-start align-items-center">
+      <button (click)="handleSearch()" type="button" class="btn btn-primary me-3">Pesquisar</button>
+      <div *ngIf="isLoading" class="spinner-grow" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-100">
+    <div *ngFor="let brand of brands" class="card w-100 mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ brand.name }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Código: {{ brand.code }}</h6>
+      </div>
+    </div>
+  </div>
+</div>

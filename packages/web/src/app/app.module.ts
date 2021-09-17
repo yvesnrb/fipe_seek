@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { IndexComponent } from './pages/index/index.component';
 import { VehiclesComponent } from './pages/vehicles/vehicles.component';
 import { BookmarksComponent } from './pages/bookmarks/bookmarks.component';
+import { BrandsComponent } from './pages/brands/brands.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { BookmarksComponent } from './pages/bookmarks/bookmarks.component';
     IndexComponent,
     VehiclesComponent,
     BookmarksComponent,
+    BrandsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
