@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "@fipeseeker/eslint-config-fipeseeker": "1.0.0",
+    "@popperjs/core": "^2.10.1",
     "bootstrap": "^5.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
