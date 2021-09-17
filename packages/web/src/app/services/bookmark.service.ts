@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
 
 import { Vehicle } from 'src/app/dtos/vehicle';
 
@@ -15,5 +14,9 @@ export class BookmarkService {
 
   public addBookmark(_id: string): Observable<Vehicle> {
     return this.http.post<Vehicle>(`${this.serverUrl}/bookmarks`, { _id });
+  }
+
+  public getBookmarks(): Observable<Vehicle[]> {
+    return this.http.get<Vehicle[]>(`${this.serverUrl}/bookmarks`);
   }
 }

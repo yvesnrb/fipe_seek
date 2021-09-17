@@ -7,9 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './pages/index/index.component';
 import { VehiclesComponent } from './pages/vehicles/vehicles.component';
+import { BookmarksComponent } from './pages/bookmarks/bookmarks.component';
 
 @NgModule({
-  declarations: [AppComponent, IndexComponent, VehiclesComponent],
+  declarations: [
+    AppComponent,
+    IndexComponent,
+    VehiclesComponent,
+    BookmarksComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
